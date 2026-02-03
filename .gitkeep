@@ -1,0 +1,34 @@
+import re
+import sys
+
+def safe_calculate(expression):
+    if not re.fullmatch(r"[0-9+\-*/(). ]+", expression):
+        return "Invalid characters used"
+    try:
+        return eval(expression)
+    except:
+        return "Maths error"
+
+
+def get_input(text):
+    print(text, end="", flush=True)
+    return sys.stdin.readline().strip()
+
+
+while True:
+    print("\nMenu")
+    print("1. Calculator (BIDMAS)")
+    print("2. Exit")
+
+    choice = get_input("Choose an option: ")
+
+    if choice == "1":
+        equation = get_input("Enter equation (example: (2+2)*3): ")
+        print("Answer:", safe_calculate(equation))
+
+    elif choice == "2":
+        print("Goodbye")
+        break
+
+    else:
+        print("Invalid option")
